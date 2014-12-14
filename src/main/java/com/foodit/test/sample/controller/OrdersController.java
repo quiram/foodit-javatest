@@ -21,4 +21,13 @@ public class OrdersController
 		
 		writeJsonData(response, orders.totalOrders().toString());
 	}
+	
+	public void getTotalSales(String restaurant, HttpServletResponse response) throws IOException, JSONException
+	{
+		RestaurantData restaurantData = getRestaurantData(restaurant);
+		JSONArray ordersRawData = new JSONArray(restaurantData.getOrdersJson().getValue());
+		Orders orders = new Orders(ordersRawData);
+		
+		writeJsonData(response, orders.totalSales().toString());
+	}
 }

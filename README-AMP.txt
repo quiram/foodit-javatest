@@ -15,5 +15,8 @@ Create the set of REST API's that can answer the following questions:
   This is available at http://<server>/restaurant/{restaurant}/orders/total
   
   2.	Total amount (money) of sales per restaurant
+  
+  This is available at http://<server>/restaurant/{restaurant}/sales/total
+  
   3.	The most frequently ordered meals on FOODit Platform
   4.	The most frequently ordered category for each restaurant
