@@ -1,5 +1,6 @@
 package com.foodit.test.sample.controller;
 
+import static com.foodit.test.sample.controller.ControllerHelper.getRestaurantData;
 import static com.foodit.test.sample.controller.ControllerHelper.writeJsonData;
 import static com.googlecode.objectify.ObjectifyService.ofy;
 
@@ -14,7 +15,6 @@ import org.apache.commons.io.IOUtils;
 
 import com.google.appengine.labs.repackaged.com.google.common.collect.Lists;
 import com.google.common.io.Resources;
-import com.googlecode.objectify.Key;
 import com.threewks.thundr.logger.Logger;
 import com.threewks.thundr.view.jsp.JspView;
 import com.threewks.thundr.view.string.StringView;
@@ -54,7 +54,7 @@ public class DataLoadController {
 	}
 
 	public void viewData(String restaurant, HttpServletResponse response) throws IOException {
-		RestaurantData restaurantLoadData = ofy().load().key(Key.create(RestaurantData.class, restaurant)).now();
+		RestaurantData restaurantLoadData = getRestaurantData(restaurant);
 		String data = restaurantLoadData.viewData();
 
 		writeJsonData(response, data);
