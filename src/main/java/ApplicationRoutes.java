@@ -1,4 +1,5 @@
 import com.foodit.test.sample.controller.DataLoadController;
+import com.foodit.test.sample.controller.OrdersController;
 import com.threewks.thundr.action.method.MethodAction;
 import com.threewks.thundr.route.Route;
 import com.threewks.thundr.route.Routes;
@@ -20,6 +21,7 @@ public class ApplicationRoutes {
 
 		public static final String ViewInstructions = "view-instructions";
 		public static final String ViewData = "view-data";
+		public static final String GetTotalOrders = "get-total-orders";
 	}
 
 	public void addRoutes(Routes routes) {
@@ -30,5 +32,8 @@ public class ApplicationRoutes {
 		// Instructions
 		routes.addRoute(new Route(GET, "/", Names.ViewInstructions), new MethodAction(DataLoadController.class, "instructions"));
 		routes.addRoute(new Route(GET, "/restaurant/{restaurant}/download", Names.ViewData), new MethodAction(DataLoadController.class, "viewData"));
+		
+		// Orders
+		routes.addRoute(new Route(GET, "/restaurant/{restaurant}/orders/total", Names.GetTotalOrders),  new MethodAction(OrdersController.class,  "getTotalOrders"));
 	}
 }
