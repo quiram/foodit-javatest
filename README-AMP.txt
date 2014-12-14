@@ -8,7 +8,9 @@ Logic has been moved as much as possible to "entity" classes, this are available
 
 Entities, are unit tested, controllers aren't. The reason for this is testing controllers automatically is cumbersome (heavy mocking and/or data setup is required), while the gains are negligible (logic is tested in entities). Manual test of the overall server behaviour has been performed. 
 
-Create the set of REST API's that can answer the following questions:
+Unit tests aren't written in the usual Class + ClassTest manner, but I believe this is easier to read.
+
+IMPLEMENTED API CALLS
 
   1.	Total number of orders for each restaurant
   
