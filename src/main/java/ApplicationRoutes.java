@@ -23,6 +23,7 @@ public class ApplicationRoutes {
 		public static final String ViewData = "view-data";
 		public static final String GetTotalOrders = "get-total-orders";
 		public static final String GetTotalSales = "get-total-sales";
+		public static final String MostFrequentMeal = "most-frequent-meal";
 	}
 
 	public void addRoutes(Routes routes) {
@@ -37,5 +38,8 @@ public class ApplicationRoutes {
 		// Orders & Sales
 		routes.addRoute(new Route(GET, "/restaurant/{restaurant}/orders/total", Names.GetTotalOrders),  new MethodAction(OrdersController.class,  "getTotalOrders"));
 		routes.addRoute(new Route(GET, "/restaurant/{restaurant}/sales/total", Names.GetTotalSales),  new MethodAction(OrdersController.class,  "getTotalSales"));
+		
+		// Popularity
+		routes.addRoute(new Route(GET, "/meals/most-frequent", Names.MostFrequentMeal), new MethodAction(OrdersController.class, "getMostFrequentMeal"));
 	}
 }

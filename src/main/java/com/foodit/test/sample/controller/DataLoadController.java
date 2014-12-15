@@ -1,5 +1,6 @@
 package com.foodit.test.sample.controller;
 
+import static com.foodit.test.sample.controller.ControllerHelper.getAllRestaurants;
 import static com.foodit.test.sample.controller.ControllerHelper.getRestaurantData;
 import static com.foodit.test.sample.controller.ControllerHelper.writeJsonData;
 import static com.googlecode.objectify.ObjectifyService.ofy;
@@ -27,7 +28,7 @@ public class DataLoadController {
 
 	public StringView load() {
 		Logger.info("Loading data");
-		List<String> restaurants = Lists.newArrayList("bbqgrill", "butlersthaicafe", "jashanexquisiteindianfood", "newchinaexpress");
+		List<String> restaurants = getAllRestaurants();
 		List<RestaurantData> restaurantData = Lists.newArrayList();
 		for (String restaurant : restaurants) {
 			restaurantData.add(loadData(restaurant));

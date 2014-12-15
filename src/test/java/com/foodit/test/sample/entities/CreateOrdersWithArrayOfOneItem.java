@@ -11,15 +11,15 @@ import com.google.appengine.labs.repackaged.org.json.JSONObject;
 
 public class CreateOrdersWithArrayOfOneItem
 {
-	
-	
 	private Orders orders;
-	
+
 	@Before
 	public void setup() throws JSONException
 	{
-		orders = new Orders(new JSONArray("[{\"totalValue\":7.30}]"));
+		JSONArray arrayOfOrders = new JSONArray("[{\"totalValue\":7.30,\"lineItems\":[{\"id\":5,\"quantity\":1}]}]");
+		JSONObject menu = new JSONObject("{\"menu\":{\"Kebabs (Kebabs)\":[{\"id\":5,\"name\":\"Mixed Kebab\"}]},\"restaurantId\":\"bbqgrill\"}");
 		
+		orders = new Orders(arrayOfOrders, menu);
 	}
 
 	@Test
@@ -29,12 +29,20 @@ public class CreateOrdersWithArrayOfOneItem
 
 		assertEquals(expectedResponse.toString(), orders.totalOrders().toString());
 	}
-	
+
 	@Test
 	public void returnsValueOfThatItem() throws JSONException
 	{
 		JSONObject expectedResponse = new JSONObject("{\"total-sales\":7.30}");
 
 		assertEquals(expectedResponse.toString(), orders.totalSales().toString());
+	}
+	
+	@Test
+	public void returnsThatMealAsMostFrequent() throws JSONException
+	{
+		JSONObject expectedResponse = new JSONObject("{\"restaurantId\":\"bbqgrill\",\"mealId\":5,\"timesOrdered\":1}");
+
+		assertEquals(expectedResponse.toString(), orders.mostFrequentMeal().toString());
 	}
 }

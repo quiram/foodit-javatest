@@ -11,13 +11,12 @@ import com.google.appengine.labs.repackaged.org.json.JSONObject;
 
 public class CreateOrdersWithEmptyArray
 {
-
 	private Orders orders;
 
 	@Before
 	public void setup() throws JSONException
 	{
-		orders = new Orders(new JSONArray("[]"));
+		orders = new Orders(new JSONArray("[]"), new JSONObject("{}"));
 	}
 	
 	@Test
@@ -34,5 +33,13 @@ public class CreateOrdersWithEmptyArray
 		JSONObject expectedResponse = new JSONObject("{\"total-sales\":0.0}");
 
 		assertEquals(expectedResponse.toString(), orders.totalSales().toString());
+	}
+	
+	@Test
+	public void doesNotHaveFrequentMeals() throws JSONException
+	{
+		JSONObject expectedResponse = new JSONObject("{}");
+
+		assertEquals(expectedResponse.toString(), orders.mostFrequentMeal().toString());
 	}
 }
